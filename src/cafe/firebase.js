@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { enableIndexedDbPersistence, initializeFirestore, CACHE_SIZE_UNLIMITED } from 'firebase/firestore'
+import { getFirestore, enableIndexedDbPersistence, initializeFirestore, CACHE_SIZE_UNLIMITED } from 'firebase/firestore'
 import { getAnalytics } from "firebase/analytics";
 
 
@@ -12,9 +12,7 @@ const firebaseApp = initializeApp({
   appId: "1:531282317018:web:25d8fc0f088be0c68d5fe3",
   measurementId: "G-GNS7C6HN2Y"
 });
-const firestore = initializeFirestore(firebaseApp, {
-  cacheSizeBytes: CACHE_SIZE_UNLIMITED
-});
+const firestore = getFirestore(firebaseApp);
 
 enableIndexedDbPersistence(firestore)
   .catch((err) => {
